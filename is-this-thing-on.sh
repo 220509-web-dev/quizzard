@@ -16,3 +16,4 @@ fi
 #  - Search the list of running containers for the provided container name using `grep`
 #  - Count the number of lines output by `grep` using `wc`
 docker ps | grep $1 | wc -l
+
