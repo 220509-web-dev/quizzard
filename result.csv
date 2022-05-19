@@ -1,0 +1,4 @@
+id,first_name,last_name,email,username,role_id,password
+1,Tester,McTesterson,tester@revature.com,tester99,1,p4$$W0RD
+2,Alice,Anderson,aanderson@revature.com,aanderson89,2,p4ssw0rd
+3,Bob,Bailey,bob.bailey@revature.com,bbailey65,3,password
