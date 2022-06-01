@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.quizzard.models.AppUser;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,11 +12,22 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDateTime;
 
-@WebServlet("/users") // annotation-based servlet registration
 public class UserServlet extends HttpServlet {
 
-    // TODO what if other servlets also need an ObjectMapper? how to share this reference across classes
-    ObjectMapper mapper = new ObjectMapper();
+    private final ObjectMapper mapper;
+
+    public UserServlet(ObjectMapper mapper) {
+        this.mapper = mapper;
+    }
+
+    @Override
+    public void init() throws ServletException {
+        System.out.println("[LOG] - UserServlet instantiated!");
+        System.out.println("[LOG] - Init param, test-init-key: " + this.getServletConfig().getInitParameter("test-init-key"));
+        System.out.println("[LOG] - Init param, user-servlet-key: " + this.getServletConfig().getInitParameter("user-servlet-key"));
+        System.out.println("[LOG] - Init param, another-param: " + this.getServletConfig().getInitParameter("another-param"));
+        System.out.println("[LOG] - Context param, test-context-key: " + this.getServletContext().getInitParameter("test-context-key"));
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

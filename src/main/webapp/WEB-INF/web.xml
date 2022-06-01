@@ -6,14 +6,31 @@
 
     <display-name>Quizzard</display-name>
     
+    <context-param>
+        <param-name>test-context-key</param-name>
+        <param-value>test-context-value</param-value>
+    </context-param>
+    
     <servlet>
         <servlet-name>SanityServlet</servlet-name>
         <servlet-class>com.revature.quizzard.servlets.SanityServlet</servlet-class>
+
+        <init-param>
+            <param-name>test-init-key</param-name>
+            <param-value>test-init-value</param-value>
+        </init-param>
+
+        <load-on-startup>1</load-on-startup> <!-- Tells Tomcat to eagerly create this servlet -->
+
     </servlet>
     
     <servlet-mapping>
         <servlet-name>SanityServlet</servlet-name>
         <url-pattern>/sanity</url-pattern>
     </servlet-mapping>
+
+    <listener>
+        <listener-class>com.revature.quizzard.util.ContextLoaderListener</listener-class>
+    </listener>
     
 </web-app>
