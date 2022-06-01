@@ -16,6 +16,7 @@ public class SanityServlet extends HttpServlet {
         System.out.println("[LOG] - Request URI: " + req.getRequestURI());
         System.out.println("[LOG] - Request method: " + req.getMethod());
         System.out.println("[LOG] - Request header, example: " + req.getHeader("example"));
+        System.out.println("[LOG] - Request query string: " + req.getQueryString());
 
         resp.setStatus(200); // it is 200 by default
         resp.setHeader("Content-type", "text/plain");
