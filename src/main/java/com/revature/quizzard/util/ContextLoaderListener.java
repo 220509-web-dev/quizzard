@@ -25,7 +25,7 @@ public class ContextLoaderListener implements ServletContextListener {
         registeredServlet.setLoadOnStartup(3);
         registeredServlet.setInitParameter("user-servlet-key", "user-servlet-value");
         registeredServlet.setInitParameter("another-param", "another-value");
-
+        registeredServlet.addMapping("/users/*");
 
     }
 
