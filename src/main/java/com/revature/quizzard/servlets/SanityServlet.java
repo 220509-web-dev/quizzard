@@ -33,7 +33,6 @@ public class SanityServlet extends HttpServlet {
 
         resp.setStatus(200); // it is 200 by default
         resp.setHeader("Content-type", "text/plain");
-        resp.setHeader("example-response-header", "some-example-value");
         resp.getWriter().write("This is the response payload");
 
     }

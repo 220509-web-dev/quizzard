@@ -32,8 +32,12 @@ public class UserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        System.out.println("[LOG] - UserServlet received a GET request at " + LocalDateTime.now());
+
         // This value would actually come from some data source
         AppUser someUser = new AppUser(999, "Alice", "Anderson", "aanderson@revature.com", "aanderson83", "password");
+
+        System.out.println("[LOG] - Was request filtered? " + req.getAttribute("was-filtered"));
 
         String respPayload = mapper.writeValueAsString(someUser);
         resp.setContentType("application/json");
@@ -44,7 +48,7 @@ public class UserServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        System.out.println("[LOG] - UserServlet received a request at " + LocalDateTime.now());
+        System.out.println("[LOG] - UserServlet received a POST request at " + LocalDateTime.now());
 
         try {
             AppUser newUser = mapper.readValue(req.getInputStream(), AppUser.class);
