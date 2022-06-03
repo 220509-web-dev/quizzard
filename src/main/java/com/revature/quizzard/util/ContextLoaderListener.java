@@ -2,6 +2,7 @@ package com.revature.quizzard.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.quizzard.daos.FlashcardDAO;
+import com.revature.quizzard.servlets.AuthServlet;
 import com.revature.quizzard.servlets.FlashcardServlet;
 import com.revature.quizzard.servlets.UserServlet;
 
@@ -19,6 +20,7 @@ public class ContextLoaderListener implements ServletContextListener {
         FlashcardDAO cardDAO = new FlashcardDAO();
         UserServlet userServlet = new UserServlet(mapper);
         FlashcardServlet flashcardServlet = new FlashcardServlet(mapper, cardDAO);
+        AuthServlet authServlet = new AuthServlet(mapper);
 
         ServletContext context = sce.getServletContext();
 
@@ -27,6 +29,7 @@ public class ContextLoaderListener implements ServletContextListener {
 //               .addMappingForUrlPatterns(EnumSet.of(DispatcherType.), true, "/*");
 
         context.addServlet("FlashcardServlet", flashcardServlet).addMapping("/flashcards/*");
+        context.addServlet("AuthServlet", authServlet).addMapping("/auth");
 
         ServletRegistration.Dynamic registeredServlet = context.addServlet("UserServlet", userServlet);
         registeredServlet.setLoadOnStartup(3);

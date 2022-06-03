@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 
 public class UserServlet extends HttpServlet {
 
@@ -36,6 +37,12 @@ public class UserServlet extends HttpServlet {
 
         // This value would actually come from some data source
         AppUser someUser = new AppUser(999, "Alice", "Anderson", "aanderson@revature.com", "aanderson83", "password");
+
+        // We can also use HashMaps to construct JSON payloads
+//        HashMap<String, Object> someUser = new HashMap<>();
+//        someUser.put("id", 999);
+//        someUser.put("firstName", "Alice");
+//        someUser.put("lastName", "Anderson");
 
         System.out.println("[LOG] - Was request filtered? " + req.getAttribute("was-filtered"));
 
