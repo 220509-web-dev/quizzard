@@ -33,22 +33,26 @@ public class UserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        System.out.println("[LOG] - UserServlet received a GET request at " + LocalDateTime.now());
+        // GET: /users
+        // GET: /users?id=123
+        // GET: /users?username=tester@email.com
+        String potentialId = req.getParameter("id");
+        String potentialUsername = req.getParameter("username");
 
-        // This value would actually come from some data source
-        AppUser someUser = new AppUser(999, "Alice", "Anderson", "aanderson@revature.com", "aanderson83", "password");
+        if (potentialId != null) {
+            // search DB for user with given id
+            return;
+        }
 
-        // We can also use HashMaps to construct JSON payloads
-//        HashMap<String, Object> someUser = new HashMap<>();
-//        someUser.put("id", 999);
-//        someUser.put("firstName", "Alice");
-//        someUser.put("lastName", "Anderson");
+        if (potentialUsername != null) {
+            // search the DB for user with given username
+            return;
+        }
 
-        System.out.println("[LOG] - Was request filtered? " + req.getAttribute("was-filtered"));
+        // if we make it here, then the request isnt for a user by id or username - just get all users
 
-        String respPayload = mapper.writeValueAsString(someUser);
-        resp.setContentType("application/json");
-        resp.getWriter().write(respPayload);
+        // search DB for all users and return
+
 
     }
 

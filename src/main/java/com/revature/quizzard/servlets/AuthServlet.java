@@ -77,9 +77,6 @@ public class AuthServlet extends HttpServlet {
 
         resp.getWriter().write(mapper.writeValueAsString(errorMessage));
 
-
-
-
     }
 
 
