@@ -62,7 +62,9 @@ public class AuthServlet extends HttpServlet {
                 HttpSession session = req.getSession(); // use req.getSession(false) to prevent a session from being made
                 session.setAttribute("auth-user", user); // this attribute is visible on any requests with this session attached
 
-                resp.setStatus(204); // NO CONTENT (success but nothing to return)
+                resp.setStatus(200); // NO CONTENT (success but nothing to return)
+                resp.setContentType("application/json");
+                resp.getWriter().write(mapper.writeValueAsString(user));
                 return; // return here otherwise we continue and bad things might happen
             }
         }

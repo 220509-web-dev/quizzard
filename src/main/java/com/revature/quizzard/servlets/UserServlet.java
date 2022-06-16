@@ -4,14 +4,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.quizzard.models.AppUser;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebInitParam;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class UserServlet extends HttpServlet {
 
@@ -33,26 +33,16 @@ public class UserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        // GET: /users
-        // GET: /users?id=123
-        // GET: /users?username=tester@email.com
-        String potentialId = req.getParameter("id");
-        String potentialUsername = req.getParameter("username");
+        List<AppUser> users = new ArrayList<>();
+        users.addAll(Arrays.asList(
+                new AppUser(1, "Adam", "Inn", "adam.inn@revature.com", "admin", "revature"),
+                new AppUser(2, "Tester", "McTesterson", "tester@revature.com", "tester", "password"),
+                new AppUser(3, "Alice", "Anderson", "alice.anderson@revature.com", "aanderson", "p4ssw0rd"),
+                new AppUser(4, "Bob", "Bailey", "bob.bailey@revature.com", "bbailey", "p4$$W0rD"),
+                new AppUser(5, "Charles", "Cantrell", "charles.cantrell@revature.com", "ccantrell", "PASSWORD")
+        ));
 
-        if (potentialId != null) {
-            // search DB for user with given id
-            return;
-        }
-
-        if (potentialUsername != null) {
-            // search the DB for user with given username
-            return;
-        }
-
-        // if we make it here, then the request isnt for a user by id or username - just get all users
-
-        // search DB for all users and return
-
+        resp.getWriter().write(mapper.writeValueAsString(users));
 
     }
 
