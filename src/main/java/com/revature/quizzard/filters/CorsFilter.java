@@ -21,6 +21,7 @@ public class CorsFilter extends HttpFilter {
         System.out.println("[LOG] - CorsFilter intercepted web request at " + LocalDateTime.now());
         resp.addHeader("Access-Control-Allow-Origin", "*");
         resp.addHeader("Access-Control-Allow-Headers", "Content-Type");
+        resp.addHeader("Access-Control-Allow-Methods", "*");
         chain.doFilter(req, resp);
     }
 
